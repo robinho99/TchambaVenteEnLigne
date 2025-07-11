@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TchambaVenteEnLigne</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; padding: 0;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+        header {
+            background-color: #228B22;
+            color: white;
+            padding: 1.2em;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.8em;
+        }
+        nav {
+            background-color: #2c7a2c;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0.7em 0;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .banner {
+            background-image: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2em;
+            font-weight: 700;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+        }
+        .container {
+            max-width: 960px;
+            margin: auto;
+            padding: 1em;
+        }
+        h2 {
+            border-bottom: 3px solid #228B22;
+            padding-bottom: 0.3em;
+            margin-bottom: 1em;
+        }
+        .categories {
+            display: flex;
+            gap: 1em;
+            justify-content: space-around;
+            margin-bottom: 2em;
+            flex-wrap: wrap;
+        }
+        .category-card {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            width: 30%;
+            min-width: 250px;
+            text-align: center;
+            padding: 1em;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .category-card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1em;
+        }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+            gap: 1em;
+        }
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .product-card img {
+            width: 100%;
+            object-fit: cover;
+            height: 160px;
+        }
+        .product-info {
+            padding: 1em;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .product-title {
+            font-weight: 700;
+            margin-bottom: 0.5em;
+            font-size: 1.1em;
+        }
+        .product-price {
+            color: #228B22;
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 0.8em;
+        }
+        .btn {
+            background-color: #ff6f00;
+            color: white;
+            border: none;
+            padding: 0.6em 1em;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn:hover {
+            background-color: #e65c00;
+        }
+        footer {
+            background-color: #228B22;
+            color: white;
+            text-align: center;
+            padding: 1em;
+            margin-top: 2em;
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .categories {
+                flex-direction: column;
+                align-items: center;
+            }
+            .category-card {
+                width: 80%;
+            }
+            .products {
+                grid-template-columns: repeat(auto-fill,minmax(160px,1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>TchambaVenteEnLigne</header>
+    <nav>
+        <a href="#">Accueil</a>
+        <a href="#produits">Produits</a>
+        <a href="#services">Services</a>
+        <a href="#vendre">Vendre</a>
+        <a href="#contact">Contact</a>
+		<a href="#contact">À Propos</a>
+    </nav>
+    <div class="banner">
+        Achetez local, vendez local, en un clic à Tchamba
+    </div>
+    <div class="container">
+        <section id="categories">
+            <h2>Catégories principales</h2>
+            <div class="categories">
+                <div class="category-card" onclick="scrollToSection('produits')">
+                    <img src="https://images.unsplash.com/photo-1574226516831-e1dff420e42e?auto=format&fit=crop&w=600&q=80" alt="Produits alimentaires">
+                    <div>Produits alimentaires</div>
+                </div>
+                <div class="category-card" onclick="scrollToSection('services')">
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=600&q=80" alt="Services">
+                    <div>Services (Plomberie, menuiserie, etc.)</div>
+                </div>
+                <div class="category-card" onclick="scrollToSection('quincaillerie')">
+                    <img src="https://images.unsplash.com/photo-1590080877777-6c65b5b73f54?auto=format&fit=crop&w=600&q=80" alt="Articles de quincaillerie">
+                    <div>Articles de quincaillerie</div>
+                </div>
+            </div>
+        </section>
+        <section id="produits">
+            <h2>Produits alimentaires populaires</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1601004890684-d8cbf643f5f2?auto=format&fit=crop&w=400&q=80" alt="Maïs">
+                    <div class="product-info">
+                        <div class="product-title">Maïs local</div>
+                        <div class="product-price">500 FCFA / kg</div>
+                        <p>Maïs frais cultivé localement, idéal pour toutes vos recettes.</p>
+                        <a href="https://wa.me/22890000000?text=Je%20suis%20intéressé%20par%20le%20maïs%20local" class="btn" target="_blank">Contacter via WhatsApp</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=400&q=80" alt="Huile d'arachide">
+                    <div class="product-info">
+                        <div class="product-title">Huile d'arachide</div>
+                        <div class="product-price">1 200 FCFA / litre</div>
+                        <p>Huile d'arachide pure, pressée à froid, pour une cuisine saine.</p>
+                        <a href="https://wa.me/22890000000?text=Je%20veux%20acheter%20de%20l'huile%20d'arachide" class="btn" target="_blank">Contacter via WhatsApp</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=400&q=80" alt="Gari">
+                    <div class="product-info">
+                        <div class="product-title">Gari</div>
+                        <div class="product-price">300 FCFA / paquet</div>
+                        <p>Gari traditionnel, sec et prêt à être cuisiné.</p>
+                        <a href="https://wa.me/22890000000?text=Je%20suis%20intéressé%20par%20le%20gari" class="btn" target="_blank">Contacter via WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="services">
+            <h2>Services proposés</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Plomberie">
+                    <div class="product-info">
+                        <div class="product-title">Service de plomberie</div>
+                        <div class="product-price">À partir de 10 000 FCFA</div>
+                        <p>Réparation et installation plomberie, rapide et efficace.</p>
+                        <a href="https://wa.me/22890000000?text=Je%20veux%20bénéficier%20du%20service%20de%20plomberie" class="btn" target="_blank">Contacter via WhatsApp</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=400&q=80" alt="Menuiserie">
+                    <div class="product-info">
+                        <div class="product-title">Service de menuiserie</div>
+                        <div class="product-price">À partir de 15 000 FCFA</div>
+                        <p>Fabrication et réparation de meubles et structures en bois.</p>
+                        <a href="https://wa.me/22890000000?text=Je%20veux%20bénéficier%20du%20service%20de%20menuiserie" class="btn" target="_blank">Contacter via WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="quincaillerie">
+            <h2>Articles de quincaillerie</h2>
+            <div class="products">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1508385082359-fae9e1e8b2ff?auto=format&fit=crop&w=400&q=80" alt="Marteau">
+                    <div class="product-info">
+                        <div class="product-title">Marteau</div>
+                        <div class="product-price">3 000 FCFA</div>
+                        <p>Marteau robuste, idéal pour tous travaux.</p>
+                        <a href="https://wa.me/22890000000?text=Je%20veux%20acheter%20un%20marteau" class="btn" target="_blank">Contacter via WhatsApp</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=400&q=80" alt="Clous">
+                    <div class="product-info">
+                        <div class="product-title">Clous (boîte)</div>
+                        <div class="product-price">1 000 FCFA</div>
+                        <p>Boîte de clous résistants pour vos projets de construction.</p>
+                        <a href="https://wa.me/22890000000?text=Je%20veux%20acheter%20des%20clous" class="btn" target="_blank">Contacter via WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="vendre">
+            <h2>Publier un produit ou service</h2>
+            <form onsubmit="alert('Fonctionnalité prototype, les données ne sont pas envoyées'); return false;">
+                <label for="nomVendeur">Nom du vendeur :</label><br/>
+                <input type="text" id="nomVendeur" name="nomVendeur" required style="width:100%;padding:0.4em;margin-bottom:0.8em;"/><br/>
+                <label for="typeProduit">Type (Produit/Service) :</label><br/>
+                <select id="typeProduit" name="typeProduit" required style="width:100%;padding:0.4em;margin-bottom:0.8em;">
+                    <option value="">--Choisir--</option>
+                    <option value="Produit">Produit</option>
+                    <option value="Service">Service</option>
+                </select><br/>
+                <label for="nomProduit">Nom du produit/service :</label><br/>
+                <input type="text" id="nomProduit" name="nomProduit" required style="width:100%;padding:0.4em;margin-bottom:0.8em;"/><br/>
+                <label for="prixProduit">Prix (en FCFA) :</label><br/>
+                <input type="number" id="prixProduit" name="prixProduit" required style="width:100%;padding:0.4em;margin-bottom:0.8em;"/><br/>
+                <label for="descriptionProduit">Description :</label><br/>
+                <textarea id="descriptionProduit" name="descriptionProduit" required style="width:100%;padding:0.4em;margin-bottom:0.8em;"></textarea><br/>
+                <button type="submit" class="btn">Envoyer</button>
+            </form>
+        </section>
+        <section id="contact" style="margin-top: 2em;">
+            <h2>Contact</h2>
+            <p>Pour toute assistance, contactez-nous au : <a href="tel:+22890000000" style="color:#228B22;">+228 90 00 00 00</a></p>
+            <p>Ou envoyez un message via WhatsApp : <a href="https://wa.me/22890000000" style="color:#228B22;">+228 90 00 00 00</a></p>
+            <p>Paiement sécurisé via Orange Money ou à la livraison.</p>
+        </section>
+    </div>
+    <footer>
+        &copy; 2025 TchambaVenteEnLigne - Tous droits réservés
+    </footer>
+    <script>
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
